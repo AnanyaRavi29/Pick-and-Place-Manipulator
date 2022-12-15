@@ -1,0 +1,2 @@
+rob_description_pkg
+-DCATKIN_DEVEL_PREFIX=/home/ananya/MARS/Pick-and-Place-Manipulator/pnp_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ananya/MARS/Pick-and-Place-Manipulator/pnp_ws/install -G Unix Makefiles

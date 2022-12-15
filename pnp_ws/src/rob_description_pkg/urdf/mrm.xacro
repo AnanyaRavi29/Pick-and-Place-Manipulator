@@ -1,0 +1,368 @@
+<?xml version="1.0" ?>
+
+<robot name="mrm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <link name="dummy">
+    </link>
+    <link name="base_link">
+        <inertial>
+            <mass value="1024.0"/>
+                <origin rpy="0 0.0 3.14159265359" xyz="0.0 0.0 0.0"/>
+            <inertia ixx="0" ixy="0" ixz="0" iyz="0" iyy="0" izz="0" />
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="1 1.0 1.0"/> 
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 3.14159265359" xyz="0 0 0"/>
+            <geometry>
+                <box size="1 1 1"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="dj" type="fixed">
+        <parent link="dummy"/>
+        <child link="base_link" />
+    </joint>
+    
+    <joint name="base_link__link_01" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5" />
+        <origin rpy="0 0 0" xyz="0 0 0.5"/>
+        <parent link="base_link"/>
+        <child link="link_01"/>
+    </joint>
+    <transmission name="base_link__link_01">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="base_link__link_01">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="base_link__link_01">
+            <mechanicalReduction>1.0</mechanicalReduction>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
+    
+    <link name="link_01">
+        <inertial>
+            <mass value="160"/>
+                <origin rpy="0 0 0" xyz="0 0 0.4"/>
+            <inertia ixx="13.433" ixy="0" ixz="0" iyz="0" iyy="13.433" izz="9.8" />
+        </inertial>
+        <collision>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_1.stl" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    
+    
+    <joint name="link_01__link_02" type="revolute">
+        <axis xyz="0 1 0" />
+        <limit effort="1000.0" lower="-0.783" upper="1.445" velocity="0.5" />
+        <origin rpy="0 0 0" xyz="0.4 0 0.4"/>
+        <parent link="link_01"/>
+        <child link="link_02"/>
+    </joint>
+    <transmission name="link_01__link_02">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="link_01__link_02">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="link_01__link_02">
+            <mechanicalReduction>1.0</mechanicalReduction>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
+
+
+    <link name="link_02">
+        <inertial>
+            <mass value="50"/>
+                <origin rpy="0 0 0" xyz="0 0 0.9"/>
+            <inertia ixx="10.48" ixy="0" ixz="0" iyz="0" iyy="10.948" izz="0.5625" />
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_2.stl" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_2.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    
+    <joint name="link_02__link_03" type="revolute">
+        <axis xyz="0 1 0" />
+        <limit effort="1000.0" lower="-3.6645" upper="1.13425" velocity="0.5" />
+        <origin rpy="0 0 0" xyz="0 0 1.5"/>
+        <parent link="link_02"/>
+        <child link="link_03"/>
+    </joint>
+    <transmission name="link_02__link_03">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="link_02__link_03">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="link_02__link_03">
+            <mechanicalReduction>1.0</mechanicalReduction>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
+    <link name="link_03">
+        <inertial>
+                <mass value="50.0"/>
+                <origin rpy="0 0 0" xyz="0.2 0.2 -0.1"/>
+                <inertia ixx="10.48" ixy="0" ixz="0" iyz="0" iyy="10.948" izz="0.5625" />
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 -0.184 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_3.stl" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 -0.184 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_3.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    
+    <joint name="link_03__link_04" type="revolute">
+        <axis xyz="1 0 0" />
+        <limit effort="1000.0" lower="-6.1075" upper="6.1075" velocity="0.5" />
+        <origin rpy="0 0 0" xyz="0.96 0 -0.05"/>
+        <parent link="link_03"/>
+        <child link="link_04"/>
+    </joint>
+    <transmission name="link_03__link_04">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="link_03__link_04">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="link_03__link_04">
+            <mechanicalReduction>1.0</mechanicalReduction>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
+    <link name="link_04">
+        <inertial>
+            <mass value="50.0"/>
+                <origin rpy="0 0 0" xyz="0.3 -0.01 0"/>
+                <inertia ixx="10.48" ixy="0" ixz="0" iyz="0" iyy="10.948" izz="0.5625" />
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_4.stl" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_4.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    
+    <joint name="link_04__link_05" type="revolute">
+        <axis xyz="0 1 0" />
+        <limit effort="1000.0" lower="-2.18" upper="2.18" velocity="0.5" />
+        <origin rpy="0 0 0" xyz="0.54 0 0"/>
+        <parent link="link_04"/>
+        <child link="link_05"/>
+    </joint>
+    <transmission name="link_04__link_05">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="link_04__link_05">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="link_04__link_05">
+            <mechanicalReduction>1.0</mechanicalReduction>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
+    <link name="link_05">
+        <inertial>
+            <mass value="20.0"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <inertia ixx="0.5291" ixy="0" ixz="0" iyz="0" iyy="0.5291" izz="0.225" />
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_5.stl" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_5.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="link_05__link_06" type="revolute">
+        <axis xyz="1 0 0" />
+        <limit effort="1000.0" lower="-6.1075" upper="6.1075" velocity="0.5" />
+        <origin rpy="0 0 0" xyz="0.193 0 0"/>
+        <parent link="link_05"/>
+        <child link="link_06"/>
+    </joint>
+    <transmission name="link_05__link_06">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="link_05__link_06">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="link_05__link_06">
+            <mechanicalReduction>1.0</mechanicalReduction>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
+
+
+
+    <link name="link_06">
+        <inertial>
+            <mass value="20.0"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <inertia ixx="0.5291" ixy="0" ixz="0" iyz="0" iyy="0.5291" izz="0.225" />
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_6.stl" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/link_6.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="gripper">
+        <inertial>
+            <mass value="20.0"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <inertia ixx="0.5291" ixy="0" ixz="0" iyz="0" iyy="0.5291" izz="0.225" />
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/gripper_base.dae" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+               <mesh filename="package://rob_description_pkg/meshes/gripper_base.dae" scale="0.001 0.001 0.001"/> 
+            </geometry>
+        </visual>
+    </link>
+    <joint name="gripper_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <parent link="link_06"/>
+        <child link="gripper"/>
+        <origin rpy="0 0 0" xyz="0.12 0 0"/>
+    </joint>
+    
+
+    <link name="left">
+        <inertial>
+            <mass value="20.0"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <inertia ixx="0.5291" ixy="0" ixz="0" iyz="0" iyy="0.5291" izz="0.225" />
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/finger_left.dae" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+               <mesh filename="package://rob_description_pkg/meshes/finger_left.dae" scale="0.001 0.001 0.001"/> 
+            </geometry>
+        </visual>
+    </link>
+    <joint name="left_joint" type="prismatic">
+        <origin rpy="0 0 0" xyz="0.15 0.0725 0" />
+        <parent link="gripper" />
+        <child link="left" />
+        <axis xyz="0 -1 0" />
+        <limit effort="100" lower="-0.01" upper="0.06" velocity="0.05" />
+        <dynamics damping="0.7" />
+    </joint>
+    <transmission name="left_joint">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+    <link name="right">
+        <inertial>
+            <mass value="20.0"/>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <inertia ixx="0.5291" ixy="0" ixz="0" iyz="0" iyy="0.5291" izz="0.225" />
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://rob_description_pkg/meshes/finger_right.dae" />
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+               <mesh filename="package://rob_description_pkg/meshes/finger_right.dae" scale="0.001 0.001 0.001"/> 
+            </geometry>
+        </visual>
+    </link>
+    <joint name="right_joint" type="prismatic">
+        <origin rpy="0 0 0" xyz="0.15 -0.0725 0" />
+        <parent link="gripper" />
+        <child link="right" />
+        <axis xyz="0 1 0" />
+        <limit effort="100" lower="-0.01" upper="0.06" velocity="0.05" />
+        <dynamics damping="0.7" />
+  </joint>
+  <transmission name="right_joint">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        </plugin>
+
+    </gazebo>
+</robot>

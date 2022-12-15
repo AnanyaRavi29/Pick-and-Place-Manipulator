@@ -1,0 +1,8 @@
+prefix=/home/ananya/MARS/Pick-and-Place-Manipulator/pnp_ws/install
+
+Name: rob_description_pkg
+Description: Description of rob_description_pkg
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
